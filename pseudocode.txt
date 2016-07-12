@@ -2,19 +2,47 @@ Flag counter
 
 
 class Board
-  attr :recent_move
+  attr :recent_move, attr :board
 - Board size is = 10 x 10
-  -Board will be an array of 10 arrays w/ 10 spaces
-  reveal_space
-    recent_move = [x,y]
+  -Board will be an array of 10 arrays w/ 10 pieces
+
+  set_random_bombs
+    iterate over board and set a number of pieces on each row == to bomb,
+    do this until all nine bombs have been set
+  end
+
+  update_board
+    if flag? || unknown?
+      update flag/unknown
+    else
+      update recent move
+      reveal space
+    end
+    render_board
+  end
+
+  reveal space
     -if board.space == bomb && recent_move == board.space
       game_over
     -elsif board.space has_adjacent_bombs
       reveal_adjacent_bombs
-    -elsif board.space is empty
+    -elsif board.space is clear?
       reveal space
       reveal_adjacent_spaces
+    end
+  end
 
+  game_over
+  end
+
+  bomb?
+  end
+
+  num_adjcent_bombs
+  end
+
+  clear?
+  end
 
 class Game
   initialize
@@ -23,15 +51,33 @@ class Game
   -initializes array of Piece(flags)
   play
   -while victory?
-    -get_player_input
+    -player_input
     -validate_player_input
     -assign attribute to board of most recent move
     -update_board
   end
 
+  victory?
+  end
+
+  player_input
+  end
+
+
 class Player(only 1)
+  get_input until valid_input?
+  end
+
+  valid_input?
+
+
 class Piece
   with attributes:
   -bomb
   -unknown
   -flag
+
+module Display
+  responsible for all messaging
+  render_board
+    - display numbers on the outside of each row/column to ease with input
