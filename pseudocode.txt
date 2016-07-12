@@ -1,0 +1,37 @@
+Flag counter
+
+
+class Board
+  attr :recent_move
+- Board size is = 10 x 10
+  -Board will be an array of 10 arrays w/ 10 spaces
+  reveal_space
+    recent_move = [x,y]
+    -if board.space == bomb && recent_move == board.space
+      game_over
+    -elsif board.space has_adjacent_bombs
+      reveal_adjacent_bombs
+    -elsif board.space is empty
+      reveal space
+      reveal_adjacent_spaces
+
+
+class Game
+  initialize
+  -initializes board
+  -initializes player
+  -initializes array of Piece(flags)
+  play
+  -while victory?
+    -get_player_input
+    -validate_player_input
+    -assign attribute to board of most recent move
+    -update_board
+  end
+
+class Player(only 1)
+class Piece
+  with attributes:
+  -bomb
+  -unknown
+  -flag
